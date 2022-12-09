@@ -42,5 +42,21 @@ pipeline{
         sh 'cat /etc/passwd'
       }
     }
+    stage('file creation'){
+        agent{
+            label 'slave1'
+        }
+        steps{
+            sh 'touch group5.txt'
+        }
+    }
+    stage('identification'){
+        agent{
+            label 'slave2'
+        }
+        steps{
+            sh 'logname'
+        }
+    }
   }
 }
